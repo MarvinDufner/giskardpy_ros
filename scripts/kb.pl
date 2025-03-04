@@ -65,7 +65,7 @@ causes(Motion, StateChange, MotionParam, Feedback) :- motion_effect(Motion, Stat
                                             (
                                                 Motion == envJointGoal -> MotionParam = [GoalState, Joint, Handle]
                                             ),
-                                            traj_open_container(Motion, Joint, GoalState, Handle), giskard_project_eval(Feedback).
+                                            traj_open_container(Motion, Joint, GoalState, Handle, Feedback).
 canPerform(Robot, Motion, MotionParam, Feedback) :- robot(Robot),
                                           gripper(Robot, Gripper),
                                           (
