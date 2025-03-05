@@ -38,5 +38,5 @@ if __name__ == '__main__':
                           ]
                       ),
                       behavior_tree_config=StandAloneBTConfig(publish_tf=True, publish_js=False, debug_mode=True),
-                      qp_controller_config=QPControllerConfig(qp_solver=SupportedQPSolver.qpSWIFT))
+                      qp_controller_config=QPControllerConfig(qp_solver=SupportedQPSolver.qpalm))
     giskard.live()
