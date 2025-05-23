@@ -1638,6 +1638,40 @@ class MotionGoalWrapper(MotionStatechartNodeWrapper):
                                     end_condition=end_condition,
                                     **kwargs)
 
+    def add_joint_goal_with_align_planes(self,
+                                         tip_link: Union[str, giskard_msgs.LinkName],
+                                         root_link: Union[str, giskard_msgs.LinkName],
+                                         joint_goals: Dict[str, float],
+                                         reference_vector: Vector3Stamped,
+                                         tip_vector: Vector3Stamped,
+                                         name: Optional[str] = None,
+                                         reference_velocity: Optional[float] = None,
+                                         weight: Optional[float] = None,
+                                         start_condition: str = '',
+                                         pause_condition: str = '',
+                                         end_condition: str = '',
+                                         **kwargs: goal_parameter
+                                         ) -> str:
+        joint_goal = self.add_joint_position(joint_goals,
+                                             name=f'{name}JointGoal' if name is not None else None,
+                                             weight=weight,
+                                             start_condition=start_condition,
+                                             pause_condition=pause_condition,
+                                             end_condition=end_condition,
+                                             )
+        align_goal = self.add_align_planes(reference_vector,
+                                           tip_link,
+                                           tip_vector,
+                                           root_link,
+                                           name=f'{name}AlignGoal' if name is not None else None,
+                                           weight=weight,
+                                           start_condition=start_condition,
+                                           pause_condition=pause_condition,
+                                           end_condition=end_condition,
+                                           reference_angular_velocity=reference_velocity,
+                                           **kwargs)
+        return f'{align_goal} and {joint_goal}'
+
 
 class MonitorWrapper(MotionStatechartNodeWrapper):
     _name_prefix = 'M'
