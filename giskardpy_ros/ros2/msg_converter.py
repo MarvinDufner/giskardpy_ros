@@ -52,7 +52,7 @@ from semantic_digital_twin.world_description.geometry import (
     Sphere,
     Mesh,
     Color,
-    Scale,
+    Scale, TriangleMesh,
 )
 from semantic_digital_twin.datastructures.prefixed_name import PrefixedName
 from semantic_digital_twin.spatial_types.derivatives import Derivatives
@@ -161,7 +161,10 @@ def link_geometry_mesh_to_visualization_marker(
     if mode.is_collision_decomposed():
         marker.mesh_resource = "file://" + data.collision_file_name_absolute
     else:
-        marker.mesh_resource = "file://" + data.filename
+        if type(data) == TriangleMesh:
+            marker.mesh_resource = "file://" + data.file.name
+        else:
+            marker.mesh_resource = "file://" + data.filename
     marker.scale.x = data.scale.x
     marker.scale.y = data.scale.y
     marker.scale.z = data.scale.z
