@@ -1,4 +1,63 @@
+from dataclasses import field
+
+from giskardpy.model.world_config import WorldWithOmniDriveRobot
+from pkg_resources import resource_filename
+from semantic_digital_twin.robots.abstract_robot import AbstractRobot
+from semantic_digital_twin.robots.tiago import Tiago
+
+from semantic_digital_twin.world_description.connections import Connection6DoF, OmniDrive
+
 from giskardpy_ros.configs.robot_interface_config import StandAloneRobotInterfaceConfig, RobotInterfaceConfig
+
+class TiagoVelocityInterface(RobotInterfaceConfig):
+
+    def setup(self):
+        # self.sync_6dof_joint_with_tf_frame(
+        #     joint=self.world.get_connections_by_type(Connection6DoF)[0],
+        #     tf_parent_frame="map",
+        #     tf_child_frame="odom",
+        # )
+        #
+        # omni_drive = self.world.get_connections_by_type(OmniDrive)[0]
+        # self.sync_odometry_topic(
+        #     "/laser_odom",
+        #     omni_drive,
+        # )
+        #
+        # self.add_base_cmd_velocity(
+        #     cmd_vel_topic="/omni_base_controller/cmd_vel", joint=omni_drive
+        # )
+
+        self.sync_joint_state_topic("/joint_states")
+        joints = [
+            "arm_left_1_joint",
+            "arm_left_2_joint",
+            "arm_left_3_joint",
+            "arm_left_4_joint",
+            "arm_left_5_joint",
+            "arm_left_6_joint",
+            "arm_left_7_joint",
+            "arm_right_1_joint",
+            "arm_right_2_joint",
+            "arm_right_3_joint",
+            "arm_right_4_joint",
+            "arm_right_5_joint",
+            "arm_right_6_joint",
+            "arm_right_7_joint",
+        ]
+        self.add_joint_velocity_group_controller(
+            cmd_topic="/arms_velocity_controller/commands", connections=joints
+        )
+
+class WorldWithTiagoConfig(WorldWithOmniDriveRobot):
+    urdf_view: AbstractRobot = field(kw_only=True, default=Tiago, init=False)
+
+    def setup_collision_config(self):
+        pass
+        # path_to_srdf = resource_filename(
+        #     "giskardpy", "../../self_collision_matrices/iai/tiago_dual.srdf"
+        # )
+        # self.world.load_collision_srdf(path_to_srdf)
 
 
 # class TiagoCollisionAvoidanceConfig(CollisionAvoidanceConfig):
