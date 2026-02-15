@@ -17,7 +17,7 @@ def generate_launch_description():
     tracy_xacro_file = os.path.join(get_package_share_directory('iai_tiago_description'), 'urdf',
                                     'tiago_dual_pal_gripper.urdf')
     robot_description = Command(
-        [FindExecutable(name='xacro'), ' ', "/home/malte/libs/Multiverse/Multiverse-Resources/robots/pal_robotics/tiago_dual/urdf/tiago_dual_absolute_meshes.urdf"])
+        [FindExecutable(name='xacro'), ' ', "/home/repo/tiago_dual_absolute_meshes.urdf"])
 
     return LaunchDescription([
         # Static transform publisher (example, modify as needed for your robot)
