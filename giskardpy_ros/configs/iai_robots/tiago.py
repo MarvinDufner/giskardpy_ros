@@ -46,7 +46,7 @@ class TiagoVelocityInterface(RobotInterfaceConfig):
             "arm_right_7_joint",
         ]
         self.add_joint_velocity_group_controller(
-            cmd_topic="/arms_velocity_controller/commands", connections=joints
+            cmd_topic="/realtime_body_controller_real/command", connections=joints
         )
 
 class WorldWithTiagoConfig(WorldWithOmniDriveRobot):
