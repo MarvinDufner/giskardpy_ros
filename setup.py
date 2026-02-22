@@ -39,7 +39,8 @@ setup(
             "motion_statechart_inspector = scripts.tools.motion_statechart_inspector:main",
             "tracy_standalone = scripts.tracy_standalone:main",
             "tracy_velocity = scripts.tracy_velocity:main",
-            "tiago_velocity = scripts.tiago_velocity:main"
+            "tiago_velocity = scripts.tiago_velocity:main",
+            "armar_velocity = scripts.armar_velocity:main",
         ],
     },
 )
