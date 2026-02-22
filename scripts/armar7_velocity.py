@@ -7,10 +7,11 @@ from rclpy import Parameter
 from rclpy.exceptions import ParameterUninitializedException
 
 from giskardpy.qp.qp_controller_config import QPControllerConfig
-from giskardpy_ros.configs.behavior_tree_config import ClosedLoopBTConfig
+from giskardpy_ros.configs.behavior_tree_config import ClosedLoopBTConfig, StandAloneBTConfig
 from giskardpy_ros.configs.giskard import Giskard
 from giskardpy_ros.ros2.visualization_mode import VisualizationMode
 from giskardpy_ros.utils.utils import load_xacro
+from giskardpy_ros.configs.robot_interface_config import StandAloneRobotInterfaceConfig
 
 
 def main():
@@ -29,7 +30,7 @@ def main():
             visualization_mode=VisualizationMode.VisualsFrameLocked
         ),
         qp_controller_config=QPControllerConfig(
-            target_frequency=80, prediction_horizon=30
+            target_frequency=80, prediction_horizon=7
         ),
     )
     giskard.live()

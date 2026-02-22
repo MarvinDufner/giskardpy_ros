@@ -30,8 +30,8 @@ def generate_launch_description():
             package='giskardpy_ros',
             executable='interactive_marker',
             name='giskard_interactive_marker',
-            parameters=[{'root_link': 'Platform_link',
-                         'tip_link': 'arm_t8_r1'}],
+            parameters=[{'root_link': 'CenterArms_fixed_link',
+                         'tip_link': 'ArmR8_Wrist_Hemisphere_B_link'}],
             output='screen',
         ),
     ])

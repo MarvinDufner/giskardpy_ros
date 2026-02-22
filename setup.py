@@ -40,7 +40,7 @@ setup(
             "tracy_standalone = scripts.tracy_standalone:main",
             "tracy_velocity = scripts.tracy_velocity:main",
             "tiago_velocity = scripts.tiago_velocity:main",
-            "armar_velocity = scripts.armar_velocity:main",
+            "armar_velocity = scripts.armar7_velocity:main",
         ],
     },
 )
