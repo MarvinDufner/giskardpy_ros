@@ -19,6 +19,7 @@ if TYPE_CHECKING:
 @dataclass
 class WorldWithUR5Config(WorldWithFixedRobot):
     urdf_view: AbstractRobot = field(kw_only=True, default=UR5)
+    root_name: PrefixedName = field(default=PrefixedName("map2"))
 
     def setup_collision_config(self) -> None:
         pass
